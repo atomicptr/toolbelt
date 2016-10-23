@@ -85,6 +85,26 @@ auto str = toolbelt::to_upper("capslock");  // CAPSLOCK
 auto str = toolbelt::trim("   I'M IN SPAAACE    "); // there is also ltrim and rtrim!
 bool b = toolbelt::ends_with("Hello, World", "World"); // true
 ```
+
+### unit_tests.hpp
+
+Fairly simple way to do unit tests.
+
+```cpp
+toolbelt::test_suite suite;
+
+suite.test("2 + 2 is 4", []() {
+    return ExpectEquals(2 + 2, 4);
+});
+
+suite.test("true and true is true", []() {
+    return ExpectTrue(true && true);
+});
+
+// runs the tests, returns true if ALL tests passed
+auto result = suite.run_tests();
+```
+
 ## License
 
 MIT
