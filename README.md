@@ -4,7 +4,7 @@ Collection of useful header-only util functions, written in C++14.
 
 ## Usage
 
-Just pick whatever header file you need and drop it into your project.
+Just pick whatever header files you need and drop them  into your project.
 
 ## Content
 
