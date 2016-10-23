@@ -72,6 +72,19 @@ auto ptr = toolbelt::make_smart<Type>(construct, destruct, arg1, ...);
 ...make_smart<SDL_Window>(SDL_CreateWindow, SDL_DestroyWindow, "Window Title!", ...);
 ```
 
+### string.hpp
+
+A few string utils.
+
+```cpp
+
+auto str = toolbelt::replace("Hello, Universe!", "Universe", "World"); // Hello, World!
+auto parts = toolbelt::split("Good Evening", ' '); // ["Good", "Evening"]
+auto str = toolbelt::to_lower("CAPSLOCK"); // capslock
+auto str = toolbelt::to_upper("capslock");  // CAPSLOCK
+auto str = toolbelt::trim("   I'M IN SPAAACE    "); // there is also ltrim and rtrim!
+bool b = toolbelt::ends_with("Hello, World", "World"); // true
+```
 ## License
 
 MIT
