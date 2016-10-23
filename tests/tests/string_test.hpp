@@ -85,7 +85,7 @@ void add_string_tests(toolbelt::test_suite& s) {
     });
 
     s.test("can trim", []() {
-        return ExpectEquals(std::string{"Hello, World"}, toolbelt::trim("     Hello, World!     "));
+        return ExpectEquals(std::string{"Hello, World!"}, toolbelt::trim("     Hello, World!     "));
     });
 
     s.test("ends with .app", []() {

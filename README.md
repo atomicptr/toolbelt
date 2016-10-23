@@ -1,4 +1,4 @@
-# toolbelt
+# toolbelt [![Build Status](https://travis-ci.org/atomicptr/toolbelt.svg?branch=master)](https://travis-ci.org/atomicptr/toolbelt)
 
 Collection of useful header-only util functions, written in C++14.
 
