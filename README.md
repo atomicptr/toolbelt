@@ -56,6 +56,22 @@ vec2 position = get_position();
 logger.log("my position is: ", position);
 ```
 
+### make_smart.hpp
+
+Create a ``std::unique_ptr`` from C Constructor/Destructor pairs.
+
+```cpp
+// General usage
+struct Type { ... };
+Type* construct(...);
+void destruct(Type*);
+
+auto ptr = toolbelt::make_smart<Type>(construct, destruct, arg1, ...);
+
+// Example using SDL2
+...make_smart<SDL_Window>(SDL_CreateWindow, SDL_DestroyWindow, "Window Title!", ...);
+```
+
 ## License
 
 MIT
