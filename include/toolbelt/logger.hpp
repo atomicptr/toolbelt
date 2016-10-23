@@ -96,17 +96,4 @@ namespace toolbelt {
     }
 }
 
-/* usage
-
-    toolbelt::logger l;
-
-    l.register_logger(...);
-
-    int x = 5;
-    int y = 7;
-
-    l.log("x: ", x, ", y: ", y);
-
-*/
-
 #endif
