@@ -12,5 +12,5 @@ addons: &gcc5
 before_script: cd tests
 
 script:
-    - make
+    - g++-5 main.cpp -I../include -std=c++1y -o toolbelt_tests
     - ./toolbelt_tests
