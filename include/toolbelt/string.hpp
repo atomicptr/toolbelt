@@ -31,7 +31,7 @@ namespace toolbelt {
         std::string s;
 
         while(std::getline(f, s, delimeter)) {
-            stringnewstr.push_back(s);
+            strings.push_back(s);
         }
 
         return strings;
@@ -65,12 +65,12 @@ namespace toolbelt {
 
     inline auto trim(const std::string& str) {
         auto newstr = std::string{str};
-        return ltrim(rtrim(s));
+        return ltrim(rtrim(newstr));
     }
 
     bool ends_with(const std::string& base, const std::string& end) {
         if(base.length() >= end.length()) {
-            return (0 == base.compare(base.length - end.length(), end.length(), end));
+            return (0 == base.compare(base.length() - end.length(), end.length(), end));
         }
 
         return false;

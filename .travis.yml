@@ -1,0 +1,5 @@
+before_script: cd tests
+
+script:
+    - make
+    - ./toolbelt_tests
