@@ -8,6 +8,14 @@ Just pick whatever header files you need and drop them  into your project.
 
 ## Content
 
+### crc32.hpp
+
+Compile time CRC32.
+
+```cpp
+auto crc = toolbelt::crc32("Hello, World");
+```
+
 ### format_time.hpp
 
 Format std::chrono time strings.
