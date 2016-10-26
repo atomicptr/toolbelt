@@ -4,6 +4,7 @@
 #include <chrono>
 #include <functional>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -59,7 +60,7 @@ namespace toolbelt {
 
             // if log lvl was fatal, exit program
             if(current_log_level_ == log_level::FATAL) {
-                std::exit(1);
+                throw std::runtime_error(message);
             }
 
             // reset log level
