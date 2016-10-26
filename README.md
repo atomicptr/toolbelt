@@ -23,9 +23,6 @@ Format std::chrono time strings.
 ```cpp
 auto now = std::chrono::system_clock::now();
 toolbelt::format_time(now, "Today is %A"); // Today is Friday
-
-// NOTE: If you don't specify a chrono time point it's now by default:
-toolbelt::format_time("Today is %A"); // Today is Friday
 ```
 
 ### logger.hpp

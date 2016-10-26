@@ -24,9 +24,29 @@ namespace toolbelt {
 
     class logger {
     public:
-        logger(bool log_cout=true);
+        logger(bool log_cout=true) {
+            if(log_cout) {
+                add([](auto loglvl, auto message, auto timestamp) {
+                    auto err = loglvl == log_level::ERROR || loglvl == log_level::FATAL;
 
-        void add(logger_function);
+                    (err ? std::cerr : std::cout) << toolbelt::format_time(timestamp, "[%H:%M:%S]");
+
+                    switch(loglvl) {
+                        case log_level::INFO: (err ? std::cerr : std::cout) << "[INFO]"; break;
+                        case log_level::DEBUG: (err ? std::cerr : std::cout) << "[DEBUG]"; break;
+                        case log_level::WARNING: (err ? std::cerr : std::cout) << "[WARNING]"; break;
+                        case log_level::ERROR: (err ? std::cerr : std::cout) << "[ERROR]"; break;
+                        case log_level::FATAL: (err ? std::cerr : std::cout) << "[FATAL]"; break;
+                    }
+
+                    (err ? std::cerr : std::cout) << "\t" << message << std::endl;
+                });
+            }
+        }
+
+        void add(logger_function func) {
+            loggers_.push_back(func);
+        }
 
         template<typename... Arguments>
         void log(const Arguments&... args) {
@@ -46,7 +66,9 @@ namespace toolbelt {
             current_log_level_ = log_level::INFO;
         }
 
-        logger& operator()(log_level);
+        logger& operator()(log_level level) {
+            current_log_level_ = level;
+        }
     private:
         log_level current_log_level_;
         std::vector<logger_function> loggers_;
@@ -66,34 +88,6 @@ namespace toolbelt {
             return result;
         }
     };
-
-    logger::logger(bool log_cout) : current_log_level_(log_level::INFO) {
-        if(log_cout) {
-            add([](auto loglvl, auto message, auto timestamp) {
-                auto err = loglvl == log_level::ERROR || loglvl == log_level::FATAL;
-
-                (err ? std::cerr : std::cout) << toolbelt::format_time(timestamp, "[%H:%M:%S]");
-
-                switch(loglvl) {
-                    case log_level::INFO: (err ? std::cerr : std::cout) << "[INFO]"; break;
-                    case log_level::DEBUG: (err ? std::cerr : std::cout) << "[DEBUG]"; break;
-                    case log_level::WARNING: (err ? std::cerr : std::cout) << "[WARNING]"; break;
-                    case log_level::ERROR: (err ? std::cerr : std::cout) << "[ERROR]"; break;
-                    case log_level::FATAL: (err ? std::cerr : std::cout) << "[FATAL]"; break;
-                }
-
-                (err ? std::cerr : std::cout) << "\t" << message << std::endl;
-            });
-        }
-    }
-
-    void logger::add(logger_function func) {
-        loggers_.push_back(func);
-    }
-
-    logger& logger::operator()(log_level level) {
-        current_log_level_ = level;
-    }
 }
 
 #endif
