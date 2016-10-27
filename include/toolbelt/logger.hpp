@@ -42,7 +42,6 @@ namespace toolbelt {
             }
             return result;
         }
-
     public:
         logger(bool log_cout=true) {
             if(log_cout) {
