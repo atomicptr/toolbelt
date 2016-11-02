@@ -4,6 +4,7 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+
 namespace toolbelt {
 
     template<typename T>
@@ -24,10 +25,6 @@ namespace toolbelt {
         }
 
         return buffer;
-    }
-
-    auto format_time(const std::string& text) {
-        return format_time(std::chrono::system_clock::now(), text);
     }
 };
 

@@ -8,6 +8,14 @@ Just pick whatever header files you need and drop them  into your project.
 
 ## Content
 
+### crc32.hpp
+
+Compile time CRC32.
+
+```cpp
+auto crc = toolbelt::crc32("Hello, World");
+```
+
 ### format_time.hpp
 
 Format std::chrono time strings.
@@ -15,9 +23,6 @@ Format std::chrono time strings.
 ```cpp
 auto now = std::chrono::system_clock::now();
 toolbelt::format_time(now, "Today is %A"); // Today is Friday
-
-// NOTE: If you don't specify a chrono time point it's now by default:
-toolbelt::format_time("Today is %A"); // Today is Friday
 ```
 
 ### logger.hpp
