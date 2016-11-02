@@ -34,7 +34,7 @@ std::string name = "World";
 logger.log("Hello, ", name);
 // [13:37:42][INFO] Hello, World
 
-logger(toolbelt::log_level::WARNING).log("Oh something went wrong!");
+logger(toolbelt::log_level::warning).log("Oh something went wrong!");
 // [02:03:04][WARNING] Oh something went wrong!
 ```
 
@@ -70,6 +70,40 @@ auto ptr = toolbelt::make_smart<Type>(construct, destruct, arg1, ...);
 
 // Example using SDL2
 ...make_smart<SDL_Window>(SDL_CreateWindow, SDL_DestroyWindow, "Window Title!", ...);
+```
+
+### os.hpp
+
+Some simple utils to work across different operating systems.
+
+```cpp
+if(toolbelt::current_os == toolbelt::operating_system::windows) {
+    std::cout << "I'm on Windows!" << std::endl;
+    // Do windows specific code
+}
+
+std::cout << "My OS: " << toolbelt::os_name << std::endl;
+
+// you can also access environment variables
+// NOTE: this will throw an exception if the environment variable does not exist
+std::cout << "My not so secret key is " << toolbelt::env("SECRETKEY") << std::endl;
+
+auto homedir = toolbelt::home_directory();
+auto configdir = toolbelt::user_config_directory();
+
+// There are also a few preprocessor directives, like:
+
+#ifdef TOOLBELT_OS_WINDOWS
+// ...
+#elif TOOLBELT_OS_MACOS
+// ...
+#elif TOOLBELT_OS_LINUX
+// ...
+#elif TOOLBELT_OS_IOS
+// ...
+#elif TOOLBELT_OS_ANDROID
+// ...
+#endif
 ```
 
 ### string.hpp
