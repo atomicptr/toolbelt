@@ -11,25 +11,25 @@
     #else
         #define TOOLBELT_OS_WINDOWS_32
     #endif
-#elif __APPLE__
+#elif defined __APPLE__
     #include "TargetConditionals.h"
     #if TARGET_IPHONE_SIMULATOR
         #define TOOLBELT_OS_ITOOLBELT_OS_SIMULATOR
         #define TOOLBELT_OS_NAME "iOS Simulator"
-    #elif TARGET_TOOLBELT_OS_IPHONE
+    #elif defined TARGET_TOOLBELT_OS_IPHONE
         #define TOOLBELT_OS_IOS
         #define TOOLBELT_OS_NAME "iOS"
     #else
         #define TOOLBELT_OS_MACOS
         #define TOOLBELT_OS_NAME "macOS"
     #endif
-#elif __ANDROID__
+#elif defined __ANDROID__
     #define TOOLBELT_OS_ANDROID
     #define TOOLBELT_OS_NAME "Android"
-#elif __linux
+#elif defined __linux
     #define TOOLBELT_OS_LINUX
     #define TOOLBELT_OS_NAME "Linux"
-#elif __unix
+#elif defined __unix
     #define TOOLBELT_OS_UNIX
     #define TOOLBELT_OS_NAME "Unix"
 #else
@@ -50,15 +50,15 @@ namespace toolbelt {
 
 #ifdef TOOLBELT_OS_WINDOWS
     const operating_system current_os = operating_system::windows;
-#elif TOOLBELT_OS_MACOS
+#elif defined TOOLBELT_OS_MACOS
     const operating_system current_os = operating_system::macos;
-#elif TOOLBELT_OS_LINUX
+#elif defined TOOLBELT_OS_LINUX
     const operating_system current_os = operating_system::linux;
-#elif TOOLBELT_OS_ANDROID
+#elif defined TOOLBELT_OS_ANDROID
     const operating_system current_os = operating_system::android;
-#elif TOOLBELT_OS_IOS
+#elif defined TOOLBELT_OS_IOS
     const operating_system current_os = operating_system::ios;
-#elif TOOLBELT_OS_UNIX
+#elif defined TOOLBELT_OS_UNIX
     const operating_system current_os = operating_system::unix;
 #else
     const operating_system current_os = operating_system::unknown;
