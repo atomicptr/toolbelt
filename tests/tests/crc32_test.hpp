@@ -27,6 +27,10 @@ void add_crc32_tests(toolbelt::test_suite& s) {
     s.test("can crc32 \"I don't know more test strings\"", []() {
         return ExpectEquals(toolbelt::crc32("I don't know more test strings"), std::uint32_t{3779608744});
     });
+
+    s.test("constexpr crc32 and noconst_crc32 are equal", []() {
+        return ExpectEquals(toolbelt::crc32("The cake is a lie"), toolbelt::noconst_crc32("The cake is a lie"));
+    });
 }
 
 #endif

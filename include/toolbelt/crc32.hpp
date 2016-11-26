@@ -4,6 +4,8 @@
 #include <cstddef>
 #include <cstdint>
 
+#include <string>
+
 namespace toolbelt {
     namespace hidden {
         constexpr std::uint32_t precomputed_table[] = {
@@ -93,6 +95,23 @@ namespace toolbelt {
 
             return crc_recursive(newcrc, str);
         }
+
+        inline std::uint32_t noconst_crc_recursive(std::uint32_t crc, const char* cstr) {
+            if(*cstr == 0) {
+                return crc ^ 0xffffffff;
+            }
+
+            auto newcrc = precomputed_table[
+                static_cast<unsigned char>(crc) ^ static_cast<unsigned char>(*cstr)] ^ (crc >> 8);
+
+            cstr += 1;
+
+            return noconst_crc_recursive(newcrc, cstr);
+        }
+    }
+
+    inline std::uint32_t noconst_crc32(const std::string& str) {
+        return hidden::noconst_crc_recursive(0xffffffff, str.c_str());
     }
 
     constexpr std::uint32_t crc32(hidden::constexpr_string str) {
